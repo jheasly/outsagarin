@@ -17,4 +17,6 @@ for row in tbody.findAll('tr'):
         list_of_cells.append(cell.text)
     list_of_rows.append(list_of_cells)
 
-print list_of_rows
+outfile = open('./outsiders.csv', 'wb')
+writer. csv.writer(outfile)
+writer.writerows(list_of_rows)
