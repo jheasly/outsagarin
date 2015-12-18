@@ -21,6 +21,7 @@ for row in tbody.findAll('tr'):
             list_of_cells.append(cell.text)
         list_of_rows.append(list_of_cells)
 
+# get Outsiders
 outfile = open('outsiders.csv', 'wb')
 writer = csv.writer(outfile)
 writer.writerows(list_of_rows)
@@ -32,3 +33,11 @@ try:
         print team, f_plus_rank
 except ValueError, err:
     print err
+
+# get Sagarin from massey
+massey_url = 'http://www.masseyratings.com/cf/compare.csv'
+massey_composite = requests.get(massey_url)
+massey_csv = massey_composite.content
+print massey_csv
+# for massey_row in massey_csv:
+#     print massey_row
