@@ -37,7 +37,7 @@ except ValueError, err:
 # get Sagarin from massey
 massey_url = 'http://www.masseyratings.com/cf/compare.csv'
 massey_composite = requests.get(massey_url)
-massey_csv = massey_composite.content
-print massey_csv
-# for massey_row in massey_csv:
-#     print massey_row
+massey_csv_raw = massey_composite.content
+massey_read = csv.reader(massey_csv_raw)
+for massey_row in massey_read:
+    print massey_row
