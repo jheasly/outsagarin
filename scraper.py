@@ -1,6 +1,7 @@
 # https://github.com/ireapps/first-web-scraper/blob/master/scrapers/crime/scrape.py
 import csv
 import requests
+import StringIO
 import time
 from BeautifulSoup import BeautifulSoup
 
@@ -34,10 +35,10 @@ try:
 except ValueError, err:
     print err
 
-# get Sagarin from massey
 massey_url = 'http://www.masseyratings.com/cf/compare.csv'
 massey_composite = requests.get(massey_url)
 massey_csv_raw = massey_composite.content
-massey_read = csv.reader(massey_csv_raw)
-for massey_row in massey_read:
-    print massey_row
+massey_f = StringIO.StringIO(massey_csv_raw)
+massey_read = csv.reader(massey_f)
+# for Team, Conf, WL, Rank, my_ean, Trimmed, my_median, StDev, ABC, ACU, AND, AP, ARG, ASH, ATC, BAS, BBT, BCM, BDF, BIH, BIL, BOB, BOW, BRN, BSS, BWE, CFP, CGV, CI, CMV, COF, COL, CPA, CPR, CSL, CTW, D1A, DCI, DES, DEZ, DII, DOI, DOK, DOL, DP, DUN, ENG, EZ, FEI, FMG, FPI, GBE, GLD, GRS, HAT, HEN, HKB, HNL, HOW, ISR, JNK, KAM, KEE, KEL, KEN, KH, KLK, KNT, KPK, KRA, LAZ, LOG, LSD, LSW, MAA, MAS, MCK, MDS, MEA, MGN, MJS, MOR, MRK, MVP, MvG, NOL, NUT, OSP, PAY, PCP, PGH, PIG, PIR, PPP, PTS, RBA, REW, RFL, RSL, RT, RTB, RTH, RTR, RUD, RWP, S&P, SAG, SEL, SFX, SOL, SOR, SP, SRC, STH, STU, TFG, TPR, TRP, TS, UCC, USA, WEL, WIL, WLK, WMR, WOB, WOL, WWP, BLNK in massey_read:
+#     print Team
